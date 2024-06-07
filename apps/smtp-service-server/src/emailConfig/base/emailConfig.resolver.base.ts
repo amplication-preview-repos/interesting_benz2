@@ -20,6 +20,7 @@ import { EmailConfigFindUniqueArgs } from "./EmailConfigFindUniqueArgs";
 import { CreateEmailConfigArgs } from "./CreateEmailConfigArgs";
 import { UpdateEmailConfigArgs } from "./UpdateEmailConfigArgs";
 import { DeleteEmailConfigArgs } from "./DeleteEmailConfigArgs";
+import { EmailConfigUpdateInput } from "./EmailConfigUpdateInput";
 import { EmailConfigService } from "../emailConfig.service";
 @graphql.Resolver(() => EmailConfig)
 export class EmailConfigResolverBase {
@@ -95,5 +96,29 @@ export class EmailConfigResolverBase {
       }
       throw error;
     }
+  }
+
+  @graphql.Query(() => String)
+  async CreateEmailConfig(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.CreateEmailConfig(args);
+  }
+
+  @graphql.Query(() => String)
+  async GetEmailConfig(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.GetEmailConfig(args);
+  }
+
+  @graphql.Mutation(() => String)
+  async SendEmail(
+    @graphql.Args()
+    args: EmailConfigUpdateInput
+  ): Promise<string> {
+    return this.service.SendEmail(args);
   }
 }

@@ -46,4 +46,10 @@ export class EmailTokenServiceBase {
   ): Promise<PrismaEmailToken> {
     return this.prisma.emailToken.delete(args);
   }
+  async CreateEmailToken(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async GetEmailToken(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
 }

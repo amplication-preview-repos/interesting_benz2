@@ -143,4 +143,38 @@ export class EmailTokenControllerBase {
       throw error;
     }
   }
+
+  @common.Get("/:id/create-email-token")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async CreateEmailToken(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.CreateEmailToken(body);
+  }
+
+  @common.Get("/:id/get-email-token")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async GetEmailToken(
+    @common.Body()
+    body: string
+  ): Promise<string> {
+    return this.service.GetEmailToken(body);
+  }
 }

@@ -11,6 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { PrismaService } from "../../prisma/prisma.service";
 import { Prisma, EmailConfig as PrismaEmailConfig } from "@prisma/client";
+import { EmailConfigUpdateInput } from "./EmailConfigUpdateInput";
 
 export class EmailConfigServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -47,5 +48,14 @@ export class EmailConfigServiceBase {
     args: Prisma.SelectSubset<T, Prisma.EmailConfigDeleteArgs>
   ): Promise<PrismaEmailConfig> {
     return this.prisma.emailConfig.delete(args);
+  }
+  async CreateEmailConfig(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async GetEmailConfig(args: string): Promise<string> {
+    throw new Error("Not implemented");
+  }
+  async SendEmail(args: EmailConfigUpdateInput): Promise<string> {
+    throw new Error("Not implemented");
   }
 }

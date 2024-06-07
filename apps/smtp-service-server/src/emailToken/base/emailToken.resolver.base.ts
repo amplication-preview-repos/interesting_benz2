@@ -96,4 +96,20 @@ export class EmailTokenResolverBase {
       throw error;
     }
   }
+
+  @graphql.Query(() => String)
+  async CreateEmailToken(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.CreateEmailToken(args);
+  }
+
+  @graphql.Query(() => String)
+  async GetEmailToken(
+    @graphql.Args()
+    args: string
+  ): Promise<string> {
+    return this.service.GetEmailToken(args);
+  }
 }

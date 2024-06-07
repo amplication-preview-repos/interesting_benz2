@@ -153,4 +153,55 @@ export class EmailConfigControllerBase {
       throw error;
     }
   }
+
+  @common.Get("/:id/create-email-config")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async CreateEmailConfig(
+    @common.Body()
+    body: EmailConfigUpdateInput
+  ): Promise<string> {
+    return this.service.CreateEmailConfig(body);
+  }
+
+  @common.Get("/:id/get-email-config")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async GetEmailConfig(
+    @common.Body()
+    body: EmailConfigUpdateInput
+  ): Promise<string> {
+    return this.service.GetEmailConfig(body);
+  }
+
+  @common.Post("/send-email")
+  @swagger.ApiOkResponse({
+    type: String,
+  })
+  @swagger.ApiNotFoundResponse({
+    type: errors.NotFoundException,
+  })
+  @swagger.ApiForbiddenResponse({
+    type: errors.ForbiddenException,
+  })
+  async SendEmail(
+    @common.Body()
+    body: EmailConfigUpdateInput
+  ): Promise<string> {
+    return this.service.SendEmail(body);
+  }
 }
