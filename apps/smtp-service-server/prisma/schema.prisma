@@ -1,0 +1,48 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model EmailConfig {
+  connectionType EnumEmailConfigConnectionType?
+  createdAt      DateTime                       @default(now())
+  id             String                         @id @default(cuid())
+  password       String?
+  port           Int?
+  smtpHost       String?
+  updatedAt      DateTime                       @updatedAt
+  username       String?
+}
+
+model EmailToken {
+  createdAt      DateTime                @default(now())
+  expirationDate DateTime?
+  id             String                  @id @default(cuid())
+  provider       EnumEmailTokenProvider?
+  token          String?
+  updatedAt      DateTime                @updatedAt
+}
+
+model User {
+  createdAt DateTime @default(now())
+  email     String?  @unique
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+enum EnumEmailConfigConnectionType {
+  Option1
+}
+
+enum EnumEmailTokenProvider {
+  Option1
+}
